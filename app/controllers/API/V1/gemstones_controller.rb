@@ -1,6 +1,7 @@
 module API
   module V1
     class GemstonesController < ApplicationController
+      before_action: :authenticate_member!
 
       respond_to :json
 
