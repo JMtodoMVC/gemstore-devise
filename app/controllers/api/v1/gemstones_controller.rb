@@ -1,13 +1,13 @@
 module API
   module V1
     class GemstonesController < ApplicationController
-      before_action: :authenticate_member!
-
+      skip_before_action :authenticate_user!, only: [:index, :show]
       respond_to :json
 
       def index
-        @gemstones = Gemstone.all
-        render json: {url: gemstones_path, gemstones: @gemstones }
+        @gemstones = Gemstone.includes(:images, :reviews).all
+        render json: {url: api_v1_gemstones_path, gemstones: @gemstones.as_json(include: [:images, :reviews]) }
+        #p "loaded the path yet?"
       end
 
       def show

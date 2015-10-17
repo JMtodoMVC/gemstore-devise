@@ -2,7 +2,7 @@
 //= require_tree ./gemstore-app
 
 (function() {
-  var app = angular.module('gemStoreApp', ['store-products']);
+  var app = angular.module('gemStoreApp', ['store-products', 'ng-token-auth']);
 
   app.config(['$httpProvider', function($httpProvider){
     $httpProvider.defaults.headers.common['X-CSRF-Token'] =
@@ -10,6 +10,29 @@
     $httpProvider.defaults.headers.common.Accept =
       'application/json';
   }]);
+
+  app.config(['$authProvider', function($authProvider){
+    $authProvider.configure({
+      apiUrl: '/api/v1'
+    });
+  }]);
+
+  app.directive("storeLogin", function() {
+    return {
+      restrict:"E",
+      templateUrl: "<%= asset_path 'gemstore-app/products/templates/login.html' %>",
+      controllerAs: "loginController"
+    };
+  });
+
+  app.directive("storeRegistration", function() {
+    return {
+      restrict:"E",
+      templateUrl: "<%= asset_path 'gemstore-app/products/templates/registration.html' %>",
+      controllerAs: "registrationController"
+    };
+  });
+
 })()
 
 

@@ -6,25 +6,26 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-gemstones = Gemstone.create!([
-  {
-    name: 'Ruby',
-    price: '200',
-    shine: '38',
-    description: 'Oh! What a loverly red'
-  },
+@count = 0
 
-  {
-    name: 'Emerald',
-    price: '150',
-    shine: '23',
-    description: 'This green is a bit dull, tbh'
-  },
+if @count < 1
+  Gemstone.create!([
+    { name: 'Ruby',
+      price: '200',
+      shine: '38',
+      description: 'Oh! What a lovely red'
+    },
+    { name: 'Emerald',
+      price: '150',
+      shine: '23',
+      description: 'This green is a bit dull, tbh'
+    },
+    { name: 'Diamond',
+      price: '125',
+      shine: '58',
+      description: 'actually quite common'
+    }
+  ])
+end
 
-  {
-    name: 'Diamond',
-    price: '125',
-    shine: '58',
-    description: 'actually quite common'
-  }
-])
+@count += 1

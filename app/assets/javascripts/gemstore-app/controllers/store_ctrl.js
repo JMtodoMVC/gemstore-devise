@@ -8,10 +8,11 @@
       $http.get( "/api/v1/gemstones" )
         .success(function(data) {
           $scope.products = data.gemstones;
+          console.log(data);
         })
         .error(function(data) {
           $scope.errors.push(data);
-          console.log(data);
+          //console.log(data);
           console.log(status);
         });
     };

@@ -1,12 +1,14 @@
 (function(){
-  var app = angular.module('gemStoreApp');
+  var app = angular.module('gemStoreApp', []);
   app.controller('ReviewController', [ '$scope', '$http', function($scope, $http) {
     $scope.reviews = [];
     $scope.errors = [];
 
     $scope.index = function() {
-      $http.get( "/api/v1/gemstones/" + gemstone.id + "/")
+      $http.get("/api/v1/gemstones/")
         .success(function(data) {
+          console.log(data);
+          console.log("SERVER PLZ");
           $scope.reviews = data.gemstones;
         })
         .error(function(data) {
